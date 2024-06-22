@@ -24,6 +24,13 @@
     "tabs"
   ],
   "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*", "index.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
   "icons": {
     "16": "icons/Security16.png",
     "48": "icons/Security48.png",
