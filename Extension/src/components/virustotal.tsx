@@ -30,6 +30,11 @@ const Virsustotal = ({
         setDetails(result[0].data.attributes.results);
         setLoading(false);
       } else {
+        if (typeof result[0] === "string") {
+          addNotification(result[0]);
+          // exit
+          return;
+        }
         if (result[0].response.status === 429) {
           addNotification(
             "You have exceeded the rate limit please try again later"
@@ -44,7 +49,7 @@ const Virsustotal = ({
     if (url !== "" && startScan) {
       handleScanURL();
     }
-  }, [url]);
+  }, [url, startScan]);
   return (
     <section
       className={

@@ -62,10 +62,13 @@ export const scanURL = async (
   url: string,
   callback: Function
 ): Promise<any> => {
-  const apikey = await new Promise<string>((resolve, reject) => {
+  const apikey = await new Promise<string>((resolve) => {
     getPreference((data: any) => {
       if (data === undefined) {
-        reject("API key not found");
+        callback([
+          "apikey not found <a href='index.html#settings/general' class='text-blue-400' target='_blank'>got to settings</a> and set the virustotal api key.",
+          true,
+        ]);
       } else {
         resolve(data);
       }

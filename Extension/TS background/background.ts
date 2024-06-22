@@ -317,3 +317,11 @@ chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
   chrome.storage.local.remove(tabId.toString());
 });
+
+
+// Open the settings page when the extension icon is clicked
+chrome.action.onClicked.addListener((tab) => {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("index.html#settings/general")
+  });
+});
