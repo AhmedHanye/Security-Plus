@@ -12,7 +12,7 @@ interface RuleAction {
 
 interface Rule {
   id: number;
-  priority?: number;
+  priority: number;
   action: RuleAction;
   condition: RuleCondition;
 }
@@ -216,12 +216,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   return true;
 });
 
-// make a rule object
 function returnRule(
   id: number,
   url: string,
   action: RuleAction,
-  priority?: number
+  priority: number
 ): Rule {
   return {
     id: id,
@@ -229,7 +228,7 @@ function returnRule(
     action: action,
     condition: {
       urlFilter: url,
-      resourceTypes: ["main_frame", "sub_frame"],
+      resourceTypes: ["main_frame"],
     },
   };
 }
@@ -242,42 +241,53 @@ async function getNewRules(): Promise<Rule[]> {
 
   const rules: Rule[] = [];
   let id = 1;
+
+  // Process websites
   websites.forEach((website: any) => {
     rules.push(
       returnRule(
         id++,
-        `|${website.url}|`,
+        `|${website.url}|`, // Use the website URL directly
         website.state
           ? { type: "allow" }
           : {
               type: "redirect",
               redirect: { url: chrome.runtime.getURL("index.html#blocked") },
             },
-        3 // higher priority for websites
+        3 // Higher priority for websites
       )
     );
   });
+
+  // Process domains
   domains.forEach((domain: any) => {
     rules.push(
       returnRule(
         id++,
-        `*://${domain.url}/*`,
+        `*://${domain.url}/*`, // Construct URL filter for domains
         domain.state
           ? { type: "allow" }
           : {
               type: "redirect",
               redirect: { url: chrome.runtime.getURL("index.html#blocked") },
             },
-        2 // lower priority for domains
+        2 // Lower priority for domains
       )
     );
   });
+
+  // Default rule
   rules.push(
-    returnRule(id, "*://*/*", {
-      type: "redirect",
-      redirect: { url: chrome.runtime.getURL("index.html") },
-    })
-  ); // default rule
+    returnRule(
+      id,
+      "*://*/*",
+      {
+        type: "redirect",
+        redirect: { url: chrome.runtime.getURL("index.html") },
+      },
+      1
+    )
+  );
   return rules;
 }
 
@@ -288,13 +298,10 @@ async function updateDynamicRules(callback: Function): Promise<void> {
       await chrome.declarativeNetRequest.getDynamicRules();
     const oldRuleIds: number[] = oldRules.map((rule) => rule.id);
 
-    console.log("Updating dynamic rules. New rules:", newRules);
-
     await chrome.declarativeNetRequest.updateDynamicRules({
       removeRuleIds: oldRuleIds,
       addRules: newRules as chrome.declarativeNetRequest.Rule[],
     });
-
     await callback("Rules updated successfully.", false);
   } catch (error) {
     console.error("Error updating dynamic rules:", error);
@@ -304,9 +311,9 @@ async function updateDynamicRules(callback: Function): Promise<void> {
 
 updateDynamicRules(() => {});
 
-// save the url in the form of tap id : url
-chrome.webNavigation.onBeforeNavigate.addListener(function (details) {
-  chrome.storage.local.set({ [details.tabId]: details.url });
+// save the url in the form of tap id : url using declarativeNetRequest when ever a rule is matched
+chrome.declarativeNetRequest.onRuleMatchedDebug.addListener((details) => {
+  chrome.storage.local.set({ [details.request.tabId]: details.request.url });
 });
 
 // Remove the stored data when the tab is closed
