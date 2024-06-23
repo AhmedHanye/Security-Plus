@@ -12,7 +12,7 @@ import gsap from "gsap";
 export const App = () => {
   const [url, setUrl] = useState("");
   const [notifications, setNotifications] = useState<string[]>([]);
-  const [virustotal, setVirustotal] = useState(true);
+  const [virustotal, setVirustotal] = useState(false);
   const [theme, setTheme] = useState(null);
   
   useEffect(() => {

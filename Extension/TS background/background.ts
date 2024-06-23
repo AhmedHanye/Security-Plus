@@ -12,7 +12,7 @@ interface RuleAction {
 
 interface Rule {
   id: number;
-  priority: number;
+  priority?: number;
   action: RuleAction;
   condition: RuleCondition;
 }
@@ -221,7 +221,7 @@ function returnRule(
   id: number,
   url: string,
   action: RuleAction,
-  priority: number
+  priority?: number
 ): Rule {
   return {
     id: id,
@@ -234,7 +234,6 @@ function returnRule(
   };
 }
 
-// Get the rules from the storage
 async function getNewRules(): Promise<Rule[]> {
   const [websites, domains] = await Promise.all([
     getItems(await websiteDB, "websites"),
@@ -247,14 +246,14 @@ async function getNewRules(): Promise<Rule[]> {
     rules.push(
       returnRule(
         id++,
-        website.url,
+        `|${website.url}|`,
         website.state
-          ? { type: "allow" } // Allow action
+          ? { type: "allow" }
           : {
               type: "redirect",
               redirect: { url: chrome.runtime.getURL("index.html#blocked") },
             },
-        3
+        3 // higher priority for websites
       )
     );
   });
@@ -262,38 +261,34 @@ async function getNewRules(): Promise<Rule[]> {
     rules.push(
       returnRule(
         id++,
-        domain.url,
+        `*://${domain.url}/*`,
         domain.state
-          ? { type: "allow" } // Allow action
+          ? { type: "allow" }
           : {
               type: "redirect",
               redirect: { url: chrome.runtime.getURL("index.html#blocked") },
             },
-        2
+        2 // lower priority for domains
       )
     );
   });
   rules.push(
-    returnRule(
-      id,
-      "*://*/*",
-      {
-        type: "redirect",
-        redirect: { url: chrome.runtime.getURL("index.html") },
-      },
-      1
-    )
-  );
+    returnRule(id, "*://*/*", {
+      type: "redirect",
+      redirect: { url: chrome.runtime.getURL("index.html") },
+    })
+  ); // default rule
   return rules;
 }
 
-// Update the dynamic rules
 async function updateDynamicRules(callback: Function): Promise<void> {
   try {
     const newRules: Rule[] = await getNewRules();
     const oldRules: chrome.declarativeNetRequest.Rule[] =
       await chrome.declarativeNetRequest.getDynamicRules();
     const oldRuleIds: number[] = oldRules.map((rule) => rule.id);
+
+    console.log("Updating dynamic rules. New rules:", newRules);
 
     await chrome.declarativeNetRequest.updateDynamicRules({
       removeRuleIds: oldRuleIds,
@@ -302,6 +297,7 @@ async function updateDynamicRules(callback: Function): Promise<void> {
 
     await callback("Rules updated successfully.", false);
   } catch (error) {
+    console.error("Error updating dynamic rules:", error);
     await callback(`Error: ${error}`, true);
   }
 }
@@ -318,10 +314,9 @@ chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
   chrome.storage.local.remove(tabId.toString());
 });
 
-
 // Open the settings page when the extension icon is clicked
 chrome.action.onClicked.addListener((tab) => {
   chrome.tabs.create({
-    url: chrome.runtime.getURL("index.html#settings/general")
+    url: chrome.runtime.getURL("index.html#settings/general"),
   });
 });
