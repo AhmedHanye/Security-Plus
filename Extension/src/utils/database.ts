@@ -34,10 +34,10 @@ const setPreference = (preference: string, value: any) => {
 };
 
 const getURL = (callback: Function) => {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const currentTabId: any = tabs[0].id;
-    chrome.storage.local.get([currentTabId.toString()], (result) => {
-      callback(result[currentTabId]);
+  chrome.tabs.getCurrent((tab) => {
+    const tabId: any = tab?.id;
+    chrome.storage.local.get([tabId.toString()], (result) => {
+      callback(result[tabId]);
     });
   });
 };
