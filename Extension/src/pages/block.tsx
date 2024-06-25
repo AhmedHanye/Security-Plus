@@ -3,34 +3,37 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-import { useState, useEffect, useRef } from "react";
-import { getPreference } from "../utils/database";
+import { useEffect } from "react";
 import { changeTheme } from "../utils/general";
 
-const Block = () => {
-  const [theme, setTheme] = useState(false);
-  const intervalRef: any = useRef();
-  const themeRef = useRef(theme);
-  const handleGetTheme = () => {
-    getPreference((data) => {
-      if (themeRef.current !== data) setTheme(data);
-    }, "theme");
-  };
-  useEffect(() => {
-    handleGetTheme();
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
-    intervalRef.current = setInterval(() => {
-      handleGetTheme();
-    }, 1000);
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-  }, []);
-  // handle theme change
+const Block = () => {
   useEffect(() => {
-    changeTheme(theme);
-    themeRef.current = theme;
-  }, [theme]);
+    changeTheme();
+    const interval = setInterval(() => {
+      changeTheme();
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from("main", {
+      backgroundPositionY: "20rem",
+      duration: 0.4,
+      ease: "bounce.out",
+    },0);
+    tl.from("main > h1", {
+      opacity: 0,
+      y: -50,
+      duration: 0.4,
+      ease: "bounce.out",
+    },1);
+  }, []);
+
   return (
     <main
       className={
@@ -86,7 +89,11 @@ const Block = () => {
           icon={faLock}
           className="text-6xl max-lg:text-5xl max-md:text-xl text-red-500"
         />
-        <span className={"text-4xl max-lg:text-4xl max-md:text-2xl max-sm:text-lg max-md:pt-1"}>
+        <span
+          className={
+            "text-4xl max-lg:text-4xl max-md:text-2xl max-sm:text-lg max-md:pt-1"
+          }
+        >
           This Site is Blocked!
         </span>
       </h1>

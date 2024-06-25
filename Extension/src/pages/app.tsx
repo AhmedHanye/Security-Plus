@@ -13,37 +13,21 @@ export const App = () => {
   const [url, setUrl] = useState("");
   const [notifications, setNotifications] = useState<string[]>([]);
   const [virustotal, setVirustotal] = useState(false);
-  const [theme, setTheme] = useState(null);
-  
-  useEffect(() => {
-    getPreference((data) => {
-      if (data !== undefined) setVirustotal(data);
-    }, "virustotal");
-
-    getURL((url: string) => setUrl(url));
-  }, []);
-  // handle theme change
-  const handleTheme = () => {
-    getPreference((data) => {
-      if (theme !== data) {
-        setTheme(data);
-      }
-    }, "theme");
+  const handleUpdates = () => {
+    setVirustotal(getPreference("virustotal") == "true");
+    changeTheme();
   };
   useEffect(() => {
-    handleTheme();
-    const intervalId = setInterval(() => {
-      handleTheme();
-    }, 1000);
+    handleUpdates();
+    getURL((url: string) => {
+      setUrl(url);
+    });
+    const interval = setInterval(() => {
+      handleUpdates();
+    }, 500);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
+    return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    if (theme !== null) {
-      changeTheme(theme);
-    }
-  }, [theme]);
 
   const addNotification = (message: string) => {
     // add only if the message is not empty and not already in the list
@@ -53,8 +37,13 @@ export const App = () => {
   };
 
   useGSAP(() => {
-    const tl = gsap.timeline();
-    tl.from("section", { opacity: 0, y: 50,stagger:0.2, duration: 0.5, ease: "power2.out"});
+    gsap.from("section", {
+      opacity: 0,
+      y: 50,
+      stagger: 0.1,
+      duration: 0.5,
+      ease: "ease-in-out",
+    });
   }, []);
 
   return (
@@ -66,9 +55,7 @@ export const App = () => {
         }
       >
         <Action url={url} addNotification={addNotification} />
-        {virustotal && (
-          <Virsustotal url={url} addNotification={addNotification} />
-        )}
+        <Virsustotal url={url} addNotification={addNotification} virustotal={virustotal} />
         <Notification
           message={notifications[0]}
           numMessages={notifications.length - 1}

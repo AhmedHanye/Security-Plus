@@ -11,12 +11,13 @@ let headers = {
   "X-Apikey": "",
 };
 
-export const changeTheme = (theme: boolean): void => {
+export const changeTheme = (): void => {
   const currentTheme = document
     .querySelector("html")
     ?.classList.contains("dark");
-  if (currentTheme !== theme) {
-    if (theme) {
+  const localTheme = getPreference("theme") === "true";
+  if (localTheme !== currentTheme) {
+    if (localTheme == true) {
       document.querySelector("html")?.classList.add("dark");
     } else {
       document.querySelector("html")?.classList.remove("dark");
@@ -63,17 +64,13 @@ export const scanURL = async (
   callback: Function
 ): Promise<any> => {
   const apikey = await new Promise<string>((resolve) => {
-    getPreference((data: any) => {
-      if (data === undefined) {
-        callback([
-          "apikey not found <a href='index.html#settings/general' class='text-blue-400' target='_blank'>got to settings</a> and set the virustotal api key.",
-          true,
-        ]);
-      } else {
-        resolve(data);
-      }
-    }, "apikey");
+    const key = getPreference("apikey");
+    resolve(key);
   });
+  if (apikey === undefined || apikey === null || apikey === "") {
+    callback(["Please enter an API key", true]);
+    return;
+  }
 
   headers["X-Apikey"] = apikey;
   const id = await getURLId(url);

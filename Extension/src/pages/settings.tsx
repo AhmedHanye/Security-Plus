@@ -6,32 +6,19 @@ import General from "../components/general";
 import Loading from "../components/loading";
 import NotFound from "./notFound";
 import SettingsNav from "../components/settingsNav";
-import { getPreference } from "../utils/database";
 import { changeTheme } from "../utils/general";
 
 const Settings = () => {
   const [loading, setLoading] = useState(false);
-  const [theme, setTheme] = useState(null);
-
-  const handleTheme = () => {
-    getPreference((data) => {
-      if (theme !== data) {
-        setTheme(data);
-      }
-    }, "theme");
-  };
   useEffect(() => {
-    handleTheme();
-    const intervalId = setInterval(() => {
-      handleTheme();
-    }, 1000);
+    changeTheme();
+    const interval = setInterval(() => {
+      changeTheme();
+    }, 500);
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId);
+    return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    if (theme !== null) changeTheme(theme);
-  }, [theme]);
+
   return (
     <>
       <SettingsNav />

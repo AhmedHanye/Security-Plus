@@ -8,9 +8,11 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 const Virsustotal = ({
   url,
   addNotification,
+  virustotal
 }: {
   url: string;
   addNotification: Function;
+  virustotal: boolean;
 }) => {
   const [details, setDetails] = useState<{
     [key: string]: {
@@ -53,7 +55,7 @@ const Virsustotal = ({
   return (
     <section
       className={
-        "mx-8 min-h-48 max-md:min-h-64 max-md:m-0 max-md:rounded-none rounded-3xl flex max-md:flex-col overflow-hidden shadow-2xl shadow-black bg-Charcoal dark:bg-Gainsboro text-base relative"
+        `mx-8 min-h-48 max-md:min-h-64 max-md:m-0 max-md:rounded-none rounded-3xl flex max-md:flex-col overflow-hidden shadow-2xl shadow-black bg-Charcoal dark:bg-Gainsboro text-base relative${!virustotal ? " hidden" : ""}`
       }
     >
       {!startScan ? (

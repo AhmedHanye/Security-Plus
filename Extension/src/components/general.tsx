@@ -4,78 +4,97 @@ import { changeTheme } from "../utils/general";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const General = () => {
   const [preferences, setPreferences] = useState<any>({
-    theme: false,
-    virustotal: false,
+    theme: "false",
+    virustotal: "false",
     apikey: "",
   });
   const [apiControl, setApiControl] = useState(false);
 
   const handlePreference = (preference: string) => {
-    getPreference((data) => {
-      if (preferences[preference] !== data) {
-        setPreferences((prev: any) => ({ ...prev, [preference]: data }));
-      }
-    }, preference);
+    const value = getPreference(preference);
+    if (value !== undefined && value !== null && value !== "") {
+      setPreferences((prev: any) => ({
+        ...prev,
+        [preference]: value,
+      }));
+    }
   };
-
+  const handleUpdates = () => {
+    handlePreference("theme");
+    handlePreference("virustotal");
+    handlePreference("apikey");
+    changeTheme();
+  };
   useEffect(() => {
-    // update preferences just once in the beginning
-    ["theme", "virustotal", "apikey"].forEach((preference) => {
-      handlePreference(preference);
-    });
-    // update preferences every 500ms
-    const intervalId = setInterval(() => {
-      ["theme", "virustotal"].forEach((preference) => {
-        handlePreference(preference);
-      });
-    }, 500);
+    handleUpdates();
+    const interval = setInterval(() => {
+      handleUpdates();
+    }, 100);
 
-    return () => clearInterval(intervalId); // Clear interval on component unmount
+    return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    changeTheme(preferences.theme);
-  }, [preferences.theme]);
+  useGSAP(()=>{
+    gsap.from(".preference", {
+      opacity: 0,
+      x: -40,
+      duration: 0.3,
+      stagger: 0.2,
+      ease:"ease-in-out"
+    });
+  },[])
 
   return (
     <section id="Preferences" className="flex flex-col gap-6 px-5 max-sm:px-1">
-      <div className="flex items-center justify-between text-lg">
+      <div className="flex items-center justify-between text-lg preference">
         <p className="font-semibold dark:text-white">Dark Mode</p>
         <label className="relative inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
-            checked={preferences.theme}
+            checked={preferences.theme === "true"}
             className="sr-only peer"
             onChange={() => {
-              setPreference("theme", !preferences.theme);
-              setPreferences((prev: any) => ({ ...prev, theme: !prev.theme }));
+              setPreference(
+                "theme",
+                preferences.theme === "true" ? "false" : "true"
+              );
+              setPreferences((prev: any) => ({
+                ...prev,
+                theme: preferences.theme === "true" ? "false" : "true",
+              }));
             }}
           />
           <div className="group peer will-change-contents ring-0 bg-rose-400 rounded-full outline-none duration-300 after:duration-300 w-[3rem] h-[1.4rem] shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:content-['✖️'] after:text-[0.5rem] after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-4 after:w-4 after:top-[0.2rem] after:left-[0.14rem] after:-rotate-180 after:flex after:justify-center after:items-center peer-checked:after:translate-x-7 peer-checked:after:content-['✔️'] peer-hover:after:scale-95 peer-checked:after:rotate-0"></div>
         </label>
       </div>
-      <div className="flex items-center justify-between text-lg">
+      <div className="flex items-center justify-between text-lg preference">
         <p className="font-semibold dark:text-white">VirusTotal</p>
         <label className="relative inline-flex items-center cursor-pointer">
           <input
             type="checkbox"
-            checked={preferences.virustotal}
+            checked={preferences.virustotal === "true"}
             className="sr-only peer"
             onChange={() => {
-              setPreference("virustotal", !preferences.virustotal);
+              setPreference(
+                "virustotal",
+                preferences.virustotal === "true" ? "false" : "true"
+              );
               setPreferences((prev: any) => ({
                 ...prev,
-                virustotal: !prev.virustotal,
+                virustotal:
+                  preferences.virustotal === "true" ? "false" : "true",
               }));
             }}
           />
           <div className="group peer will-change-contents ring-0 bg-rose-400 rounded-full outline-none duration-100 after:duration-300 w-[3rem] h-[1.4rem] shadow-md peer-checked:bg-emerald-500 peer-focus:outline-none after:content-['✖️'] after:text-[0.5rem] after:rounded-full after:absolute after:bg-gray-50 after:outline-none after:h-4 after:w-4 after:top-[0.2rem] after:left-[0.14rem] after:-rotate-180 after:flex after:justify-center after:items-center peer-checked:after:translate-x-7 peer-checked:after:content-['✔️'] peer-hover:after:scale-95 peer-checked:after:rotate-0"></div>
         </label>
       </div>
-      <div className="flex items-center justify-between text-lg">
+      <div className="flex items-center justify-between text-lg preference">
         <p className="font-semibold dark:text-white">VirusTotal API key</p>
         <div className="flex items-center gap-4">
           <button

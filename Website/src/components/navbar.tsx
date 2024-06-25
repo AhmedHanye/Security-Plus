@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { faSun } from "@fortawesome/free-solid-svg-icons";
 
-import logo from "../assets/Security.png";
+import logo from "../assets/Security.webp";
 
 const Navbar = ({ currentPage }: { currentPage: number }) => {
   const [theme, setTheme] = useState(false);
@@ -70,7 +70,7 @@ const Navbar = ({ currentPage }: { currentPage: number }) => {
           {/* links */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <a className="flex flex-shrink-0 items-center" href="">
-              <img className="h-8 w-auto transform transition-all duration-100 hover:scale-105 will-change-contents " src={logo} alt="Your Company" />
+              <img className="h-8 w-auto transform transition-all duration-100 hover:scale-105 will-change-contents" width={32} height={32} src={logo} alt="Your Company" />
             </a>
 
             <div className="hidden sm:ml-6 sm:block">
@@ -99,7 +99,7 @@ const Navbar = ({ currentPage }: { currentPage: number }) => {
               onClick={() => setTheme(!theme)}
               className={`${
                 theme ? "text-white" : "text-yellow-300"
-              } text-xl pe-2 hover:brightness-90 hover:scale-105`}
+              } text-xl pe-3 hover:brightness-90 hover:scale-105`}
               title={`${theme ? "Light" : "Dark"}`}
             >
               {theme ? (

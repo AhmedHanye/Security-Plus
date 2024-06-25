@@ -16,13 +16,17 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@gsap/react": "^2.1.1",
+    "axios": "^1.7.2",
+    "browser-github-folder-downloader": "^1.0.0",
     "gsap": "^3.12.5",
+    "jszip": "^3.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "split-type": "^0.3.4"
   },
   "devDependencies": {
+    "@types/node": "^20.14.8",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

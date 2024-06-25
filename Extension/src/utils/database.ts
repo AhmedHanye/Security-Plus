@@ -16,21 +16,12 @@ const sendMessage = (
   }
 };
 
-const getPreference = (
-  callback: ((arg0: any) => void) | undefined,
-  preference: string
-) => {
-  chrome.storage.local.get(preference, function (data) {
-    if (callback) {
-      callback(data[preference]);
-    }
-  });
+const getPreference = (preference: string) : any => {
+  return localStorage.getItem(preference);
 };
 
 const setPreference = (preference: string, value: any) => {
-  const preferenceObj: { [key: string]: any } = {};
-  preferenceObj[preference] = value;
-  chrome.storage.local.set(preferenceObj);
+  localStorage.setItem(preference, value);
 };
 
 const getURL = (callback: Function) => {

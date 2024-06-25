@@ -1,28 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Security Plus - Enhance Your Browsing Safety</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="./src/assets/Security.png" />
-    
+
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Security Plus is a browser extension designed to protect users during browsing. Enhance your online safety and security with our advanced features." />
-    <meta name="keywords" content="Security Plus, browser extension, online security, browsing protection, internet safety" />
+    <meta
+      name="description"
+      content="Security Plus is a browser extension designed to protect users during browsing. Enhance your online safety and security with our advanced features."
+    />
+    <meta
+      name="keywords"
+      content="Security Plus, browser extension, online security, browsing protection, internet safety"
+    />
     <meta name="author" content="Ahmed Hanye" />
-    
+
     <!-- Open Graph Meta Tags for social media -->
-    <meta property="og:title" content="Security Plus - Enhance Your Browsing Safety" />
-    <meta property="og:description" content="Security Plus is a browser extension designed to protect users during browsing. Enhance your online safety and security with our advanced features." />
+    <meta
+      property="og:title"
+      content="Security Plus - Enhance Your Browsing Safety"
+    />
+    <meta
+      property="og:description"
+      content="Security Plus is a browser extension designed to protect users during browsing. Enhance your online safety and security with our advanced features."
+    />
     <meta property="og:image" content="./src/assets/Security.png" />
     <meta property="og:url" content="https://yourwebsite.com" />
     <meta property="og:type" content="website" />
 
     <!-- Additional SEO Improvements -->
     <link rel="canonical" href="https://yourwebsite.com" />
+    <!-- Dark Mode -->
+    <script>
+      const theme = localStorage.getItem("theme") == "true";
+      document.querySelector("html").classList.add(theme ? "dark" : "light");
+    </script>
   </head>
   <body>
     <div id="root"></div>

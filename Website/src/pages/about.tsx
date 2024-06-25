@@ -7,10 +7,12 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 const About = ({ setCurrentPage }: { setCurrentPage: Function }) => {
+  // set current page to 2
   useEffect(() => {
     setCurrentPage(2);
   }, []);
 
+  // GSAP animations
   useGSAP(() => {
     const tl = gsap.timeline();
     tl.from("#About h1", { y: 30, opacity: 0, duration: 0.4 });
