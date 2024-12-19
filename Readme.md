@@ -1,41 +1,89 @@
 # Security Plus
 
-<div align="center" style="padding:16px 0">
-  <img src="./Security.webp" alt="Alt text" width="300" height="300">
+<div style="padding:8px 0;">
+  <img src="./SecurityPlus.webp" alt="Security plus preview img" >
 </div>
-
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
 
 ## Introduction
 
-Security Plus is a powerful Chrome extension designed to enhance your browsing security and protect you from online threats.
+Security Plus is a Chrome extension that helps you control and monitor website access, protecting you from potentially harmful websites. It provides a simple interface to manage website permissions and check site safety through VirusTotal and whoIs.
 
 ## Features
 
-1. **Always Blocked**: Any website you are going to visit will be redirected to a local page where you can decide to allow or block the website.
+1. **Website Access Control**
 
-2. **Action Specification**: You can choose whether
+   - Intercepts all website visits with a decision page
+   - Manage permissions for individual websites or entire domains
+   - View detailed website information before accessing using virusTotal and whoIs
 
-   - To block a **Website**.
-   - To allow a **Website**.
-   - To block a **Domain** (All websites under the domain will be blocked).
-   - To allow a **Domain** (All websites under the domain will be allowed).
+2. **Security Features**
 
-3. **VirusTotal Scan**: You can scan the website you are going to visit using VirusTotal API.
+   - Domain-level blocking and allowing
+   - Page-level blocking and allowing
+   - Persistent settings storage
+
+3. **User Interface**
+   - Clean and intuitive decision page
+   - Quick access through browser extension icon
+   - Easy-to-use settings management
+   - You can use shortcuts to
+     for web access control.
 
 ## Installation
 
-1. Clone the repository using the following command:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/AhmedHanye/Security-Plus.git
    ```
 
-2. Open Chrome and go to `chrome://extensions/`.
-3. Enable Developer Mode.
-4. Click on `Load Unpacked` and select the `Extension/dist` folder.
-5. The extension will now be added to your browser. Enjoy enhanced browsing security!🎉🎉
+2. Install dependencies and build:
+
+   ```bash
+   cd Security-Plus/Extension
+   npm install
+   npm run build
+   ```
+
+3. Load in Chrome:
+   - Open Chrome and navigate to `chrome://extensions/`
+   - Enable "Developer mode" in the top right
+   - Click "Load unpacked"
+   - Select the `Extension/dist` folder
+
+## Usage
+
+1. **First Visit**
+
+   - When visiting a new website, you'll see the decision page
+   - Choose to allow or block the site/domain
+
+2. **Managing Permissions**
+
+   - Click the extension icon to access settings
+   - View and modify existing rules
+
+3. **Helper Tools**
+   - VirusTotal and whoIs iframes
+
+## Technologies
+
+- React
+- TypeScript
+- Tailwind CSS
+- chrome-extension v3
+- [react-mosaic](https://github.com/nomcopter/react-mosaic)
+- shadcn
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## Acknowledgements
+
+- [VirusTotal](https://www.virustotal.com/gui/home/upload)
+- [whoIs](https://who.is/)
+
+## Contributors
+
+- [Ahmed Hany](https://www.linkedin.com/in/ahmed-hanye)

@@ -1,73 +1,100 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { faCopy } from "@fortawesome/free-regular-svg-icons";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { GlobeLock, PanelLeft, Settings, Database } from "lucide-react";
 
-import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
-const Navbar = ({ url }: { url: string }) => {
-  const [clicked, setClecked] = useState(false);
+const AsideIcon = ({
+  name,
+  to,
+  Icon,
+}: {
+  name: string;
+  to: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}) => {
   return (
-    <nav className={"bg-red-600 flex h-10 flex-row text-white"}>
-      <div className={"relative group w-fit"}>
-        <button
-          id="refresh"
-          className={"px-4 h-full bg-navy-blue group"}
-          name={"refresh"}
-          aria-label={"refresh"}
+    <Tooltip key={name}>
+      <TooltipTrigger asChild>
+        <Link
+          to={to}
+          relative="path"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
         >
-          <FontAwesomeIcon
-            icon={faArrowsRotate}
-            className={
-              "group-hover:scale-110 group-hover:rotate-180 transition-all duration-250 will-change-contents text-xl"
-            }
-            onClick={() => (window.location.href = url)}
-          />
-        </button>
-        <span
-          className={
-            "absolute p-1 rounded text-xs left-1/2 -translate-x-1/2 -bottom-7 bg-black font-semibold hidden group-hover:block dark:bg-white dark:text-black"
-          }
-        >
-          refresh
-        </span>
+          <Icon className="h-5 w-5" />
+          <span className="sr-only">{name}</span>
+        </Link>
+      </TooltipTrigger>
+      <TooltipContent side="right">{name}</TooltipContent>
+    </Tooltip>
+  );
+};
+
+const Navbar = () => {
+  return (
+    <div>
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+        <nav className="flex flex-col h-full items-center justify-between px-2 sm:py-4">
+          <AsideIcon name="Security Check" to="/" Icon={GlobeLock} />
+          <div className="flex flex-col gap-2">
+            <AsideIcon name="Database" to="/database" Icon={Database} />
+            <AsideIcon name="Settings" to="/settings" Icon={Settings} />
+          </div>
+        </nav>
+      </aside>
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button size="icon" variant="outline" className="sm:hidden">
+                <PanelLeft className="h-5 w-5" />
+                <span className="sr-only">Toggle Menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="sm:max-w-xs pt-12">
+              <SheetTitle>Security Plus</SheetTitle>
+              <SheetDescription>
+                Keep your browsing secure with Security Plus
+              </SheetDescription>
+              <nav className="grid gap-6 py-10 text-lg font-medium">
+                <Link
+                  to="/"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <GlobeLock className="h-5 w-5" />
+                  Security Check
+                </Link>
+                <Link
+                  to="/database"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <Database className="h-5 w-5" />
+                  Database
+                </Link>
+                <Link
+                  to="/settings"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
+                  <Settings className="h-5 w-5" />
+                  Settings
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </header>
       </div>
-      <div
-        id="url"
-        className={`w-full h-full px-4 font-semibold text-xl bg-gunmetal flex items-center text-nowrap text-ellipsis overflow-x-scroll hide-scrollbar overflow-y-hidden ${
-          clicked ? "shadow-dual-neumorphic" : ""
-        }`}
-        onClick={() => setClecked(true)}
-        onBlur={() => setClecked(false)}
-        tabIndex={0} // This is required to make the div focusable if you remove it the div will not be focusable
-      >
-        <p>{url || ""}</p>
-      </div>
-      <div className={"relative group w-fit"}>
-        <button
-          id="copyUrl"
-          className={"px-4 h-full bg-navy-blue group relative"}
-          onClick={() => {
-            navigator.clipboard.writeText(url);
-          }}
-          name={"copy url"}
-          aria-label={"copy url"}
-        >
-          <FontAwesomeIcon
-            icon={faCopy}
-            className={
-              "group-hover:scale-110 transition-all duration-250 will-change-contents text-xl"
-            }
-          />
-        </button>
-        <span
-          className={
-            "absolute p-1 rounded text-xs left-1/2 -translate-x-1/2 -bottom-7 bg-black font-semibold hidden group-hover:block dark:bg-white dark:text-black"
-          }
-        >
-          copy
-        </span>
-      </div>
-    </nav>
+    </div>
   );
 };
 
