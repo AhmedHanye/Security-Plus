@@ -1,41 +1,38 @@
 # Security Plus
 
-<div align="center" style="padding:16px 0">
-  <img src="./Security.webp" alt="Alt text" width="300" height="300">
-</div>
+<img src="./preview.webp" alt="Security Plus Preview" width="100%" height="auto">
 
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Installation](#installation)
-
-## Introduction
-
-Security Plus is a powerful Chrome extension designed to enhance your browsing security and protect you from online threats.
+## Overview
+Security Plus is a Chrome extension that adds an extra layer of security to your browsing experience. It intercepts page loads and provides detailed security analysis using VirusTotal and WhoIs before allowing access.
 
 ## Features
 
-1. **Always Blocked**: Any website you are going to visit will be redirected to a local page where you can decide to allow or block the website.
+- 🛡️ **Default Page Blocking**: Automatically blocks all new pages for security verification
+- 🔍 **Security Analysis Widget**:
+  - VirusTotal integration for threat detection
+  - WhoIs lookup for domain information
+  - Customizable widget layout using React-Mosaic
+  - Shortcut keys for quick actions based on your analysis, shortcuts are based on you os (mac or windows)
+- 🎯 **Extension Popup**:
+  - Quick search functionality
+  - Database management
+  - Customizable settings
 
-2. **Action Specification**: You can choose whether
+## Tech Stack
 
-   - To block a **Website**.
-   - To allow a **Website**.
-   - To block a **Domain** (All websites under the domain will be blocked).
-   - To allow a **Domain** (All websites under the domain will be allowed).
+- ⚛️ React (v19)
+- 🎨 Tailwind CSS
+- 🔧 ShadcnUI Components
+- 📊 React-Mosaic
+- 🌐 Chrome Extension Manifest V3
 
-3. **VirusTotal Scan**: You can scan the website you are going to visit using VirusTotal API.
 
-## Installation
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-1. Clone the repository using the following command:
+## Acknowledgements
+- [VirusTotal](https://www.virustotal.com/)
+- [WhoIs](https://whois.com/)
 
-   ```bash
-   git clone https://github.com/AhmedHanye/Security-Plus.git
-   ```
-
-2. Open Chrome and go to `chrome://extensions/`.
-3. Enable Developer Mode.
-4. Click on `Load Unpacked` and select the `Extension/dist` folder.
-5. The extension will now be added to your browser. Enjoy enhanced browsing security!🎉🎉
+## Contributors
+- [Ahmed Hanye](https://www.linkedin.com/in/ahmed-hanye)

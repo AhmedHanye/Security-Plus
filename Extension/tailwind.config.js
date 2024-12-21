@@ -1,30 +1,62 @@
-/** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from "tailwindcss-animate";
+
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "selector",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
       colors: {
-        "navy-blue": "#2f3d5c",
-        gunmetal: "#161625",
-        Charcoal: "#212121",
-        Platinum: "#e8e8e8",
-        Gainsboro: "#e0e0e0",
-        Alice_Blue: "#f2f3f7",
-        Onyx: "#353535",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
       },
-      backgroundImage: {
-        blocked: "url('/src/assets/blocked.svg')",
-        notFound: "url('/src/assets/404.svg')",
-      },
-      height: {
-        "calc-vh": "calc(100vh - 1.25rem)",
-        "calc-vh-2": "calc(100vh - 2.5rem)",
-      },
-      width: {
-        "calc-vw": "calc(100vw - 16rem)",
+      boxShadow: {
+        "theme-light": "#f97316 0 0 20px 5px",
+        "theme-dark": "#64748b 0 0 20px 5px",
       },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 };
