@@ -3,7 +3,7 @@
 <img src="./preview.webp" alt="Security Plus Preview" width="100%" height="auto">
 
 ## Overview
-Security Plus is a Chrome extension that adds an extra layer of security to your browsing experience. It intercepts page loads and provides detailed security analysis using VirusTotal and WhoIs before allowing access.
+Security Plus is a browser extension that adds an extra layer of security to your browsing experience. It intercepts page loads and provides detailed security analysis using VirusTotal and WhoIs before allowing access.
 
 ## Features
 
@@ -24,7 +24,7 @@ Security Plus is a Chrome extension that adds an extra layer of security to your
 - 🎨 Tailwind CSS
 - 🔧 ShadcnUI Components
 - 📊 React-Mosaic
-- 🌐 Chrome Extension Manifest V3
+- 🌐 Manifest V3
 
 
 ## License

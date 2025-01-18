@@ -6,13 +6,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import useStorageVariable from "@/hooks/storageVariable";
+import { useTheme } from "@/hooks/themeContext";
 
 export default function ThemeSwitch() {
-  const { value: themeConfig, setValue: setTheme } = useStorageVariable({
-    key: "theme",
-  });
-
+  const { theme, changeTheme } = useTheme();
+  const themeWords: Theme[] = ["light", "dark", "system"];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -31,19 +29,13 @@ export default function ThemeSwitch() {
         align="end"
         className="dark:bg-neutral-700 rounded-lg"
       >
-        {["light", "dark", "system"].map((themeOption) => (
+        {themeWords.map((themeOption) => (
           <DropdownMenuItem
             key={themeOption}
             className={`cursor-pointer ${
-              themeOption === themeConfig
-                ? "bg-neutral-100 dark:bg-neutral-500"
-                : ""
+              themeOption === theme ? "bg-neutral-100 dark:bg-neutral-500" : ""
             }`}
-            onSelect={() => {
-              // @ts-expect-error: setThemeInLocalStorage is defined in an external script
-              setThemeInLocalStorage(themeOption);
-              setTheme(themeOption);
-            }}
+            onClick={() => changeTheme(themeOption)}
           >
             {themeOption}
           </DropdownMenuItem>
