@@ -1,4 +1,4 @@
-type theme = "light" | "dark" | "system" | undefined;
+type Theme = "light" | "dark" | "system";
 type Links = {
   id: number;
   url: string;
