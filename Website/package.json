@@ -19,7 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@gsap/react": "^2.1.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "browser-github-folder-downloader": "^1.0.0",
     "gsap": "^3.12.5",
     "jszip": "^3.10.1",
