@@ -1,4 +1,7 @@
-"use client";
+'use client';
+
+import { memo, useCallback, useMemo } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Select,
   SelectContent,
@@ -6,32 +9,36 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/select';
 
-const Version = ({
-  versions,
-  currentVersion,
-}: {
-  versions: string[];
-  currentVersion: string;
-}) => {
+const Version = memo(({ versions }: { versions: string[] }) => {
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const changeVersion = (version: string) => {
-    if (version === currentVersion) return;
-    router.push(`?version=${version}`, { scroll: false });
-  };  
+
+  const currentVersion = useMemo(
+    () => searchParams.get('version') || versions[versions.length - 1],
+    [searchParams, versions]
+  );
+
+  const changeVersion = useCallback(
+    (version: string) => {
+      if (version === currentVersion) return;
+      router.push(`?version=${version}`, { scroll: false });
+    },
+    [router, currentVersion]
+  );
+
   return (
     <Select
       name="versions"
-      onValueChange={(value) => changeVersion(value)}
       defaultValue={currentVersion}
+      onValueChange={changeVersion}
     >
       <SelectTrigger
         className="w-fit gap-2 rounded-full px-3 lg:text-xl md:text-lg font-bold bg-zinc-800 text-white"
         aria-label="Change version"
       >
-        <SelectValue placeholder={currentVersion} />
+        <SelectValue />
       </SelectTrigger>
       <SelectContent className="dark">
         <SelectGroup className="[&>*]:cursor-pointer">
@@ -44,6 +51,8 @@ const Version = ({
       </SelectContent>
     </Select>
   );
-};
+});
+
+Version.displayName = 'Version';
 
 export default Version;

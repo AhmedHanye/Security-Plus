@@ -29,7 +29,9 @@ const Content = async ({ version }: { version: string }) => {
       </div>
     </>
   ) : (
-    <p>doesn&apos;t exist</p>
+    <div className="h-screen center">
+      <p className="text-2xl font-black">{version} doesn&apos;t exist</p>
+    </div>
   );
 };
 

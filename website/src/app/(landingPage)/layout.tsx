@@ -1,7 +1,9 @@
 import Footer from "@/components/footer";
 import Home from "@/components/home/home";
+import ReleaseLoading from "@/components/release/releaseLoading";
+import Releases from "@/components/release/releases";
+import { Suspense } from "react";
 
-// TODO: add version change mechanism
 // TODO Complete the download button
 // TODO: optimize the app
 
@@ -14,7 +16,9 @@ export default async function Layout({
     <>
       <main>
         <Home />
-        {children}
+        <Suspense fallback={<ReleaseLoading />}>
+          <Releases>{children}</Releases>
+        </Suspense>
       </main>
       <Footer />
     </>

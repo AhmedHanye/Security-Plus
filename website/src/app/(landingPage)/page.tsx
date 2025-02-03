@@ -1,7 +1,7 @@
-import Releases from "@/components/release/releases";
-import ReleaseLoading from "@/components/release/releaseLoading";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import ContentSkeleton from "@/components/release/contentSkeleton";
+import Content from "@/components/release/content";
 
 export const metadata: Metadata = {
   title: "Security Plus",
@@ -21,8 +21,10 @@ export default async function Page({
   const params = await Promise.resolve(searchParams);
   const version = params?.version;
   return (
-    <Suspense key={version} fallback={<ReleaseLoading />}>
-      <Releases version={version} />
+    <Suspense key={version} fallback={<ContentSkeleton />}>
+      <div className="xl:px-16 lg:px-12 md:px-8 px-5 flex flex-col gap-10">
+        <Content version={version as string} />
+      </div>
     </Suspense>
   );
 }
