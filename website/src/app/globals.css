@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #474647;
+}
+
+/* Scrollbar:fix layout shift */
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+html body[data-scroll-locked] {
+  --removed-body-scroll-bar-size: 0 !important;
+  margin-right: 0 !important;
+}
+
 @layer base {
   :root {
     --font-source-sans-pro: "Source Sans Pro", sans-serif;
@@ -72,10 +96,10 @@
   .center {
     @apply flex items-center justify-center;
   }
-  .py-custom{
+  .py-custom {
     @apply py-8 max-md:py-4;
   }
-  .px-custom{
+  .px-custom {
     @apply px-8 max-md:px-4;
   }
 }
