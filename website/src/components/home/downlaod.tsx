@@ -7,11 +7,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Image from "next/image";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-const Download = () => {
+import { Code } from "lucide-react";
+import Image from "next/image";
+import { Suspense } from "react";
+import Spinner from "../spinner";
+import dynamic from "next/dynamic";
+const DownloadData = dynamic(() => import("./downloadData"));
+
+const Download = async () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,13 +31,35 @@ const Download = () => {
           />
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[50vw]">
         <DialogHeader>
-          <DialogTitle>{/* title */}</DialogTitle>
-          <DialogDescription>{/* description */}</DialogDescription>
+          <DialogTitle>Get Security Plus for Your Browser</DialogTitle>
+          <DialogDescription>
+            Get real-time protection with advanced tools. Stay safe from
+            malicious websites and protect your browsing experience.
+          </DialogDescription>
         </DialogHeader>
-        {/* body */}
-        <DialogFooter>{/* footer */}</DialogFooter>
+        <ScrollArea className="h-[50vh]" scrollHideDelay={0} type="always">
+          <Suspense
+            fallback={
+              <div className="h-[50vh] center">
+                <Spinner />
+              </div>
+            }
+          >
+            <DownloadData />
+          </Suspense>
+        </ScrollArea>
+        <DialogFooter>
+          <a
+            href="https://github.com/AhmedHanye/Security-Plus/releases/"
+            title="Security Plus Releases"
+            target="_blank"
+            className="ms-auto"
+          >
+            <Code />
+          </a>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
