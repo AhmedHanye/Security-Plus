@@ -14,11 +14,11 @@ const Checker = () => {
   // * Know which tools are enabled
   const { value: virusTotal } = useStorageVariable({
     key: "virusTotal",
-    defaultValue: "true",
+    defaultValue: "false",
   });
   const { value: whois } = useStorageVariable({
     key: "whoIs",
-    defaultValue: "true",
+    defaultValue: "false",
   });
 
   // * Set the default URL for the tools
