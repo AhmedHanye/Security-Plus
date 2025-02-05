@@ -6,7 +6,7 @@ import { promises as fs } from "fs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const excludedFilesDirs = ["manifest.json", "e-icons"];
+const excludedFilesDirs = ["manifest.json", "e-icons","ruleset.json"];
 
 // Main function to orchestrate the build and copy process
 const main = () => {

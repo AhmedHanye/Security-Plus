@@ -29,7 +29,9 @@ Extension/chromium/**
 Extension/firefox/**
 
 !Extension/chromium/manifest.json
+!Extension/chromium/ruleset.json
 !Extension/firefox/manifest.json
+!Extension/firefox/ruleset.json
 !Extension/chromium/e-icons
 !Extension/firefox/e-icons
 !Extension/chromium/e-icons/**

@@ -20,5 +20,14 @@
     "32": "e-icons/icon32.png",
     "48": "e-icons/icon48.png",
     "128": "e-icons/icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset1",
+        "enabled": true,
+        "path": "ruleset.json"
+      }
+    ]
   }
 }
