@@ -27,6 +27,7 @@ const Version = memo(({ versions }: { versions: string[] }) => {
     },
     [router, currentVersion]
   );
+  console.log(versions);
 
   return (
     <Select

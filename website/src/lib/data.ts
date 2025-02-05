@@ -1,6 +1,24 @@
 import { readdir, readFile } from "fs/promises";
 import path from "path";
 
+// TODO: add caching
+
+const getDownloadLinks = async (): Promise<{
+  [key: string]: {
+    [key: string]: string;
+  };
+}> => {
+  try {
+    const dataPath = path.join(process.cwd(), "src/download.json");
+    const fileContent = await readFile(dataPath, "utf-8");
+    await slowTime(3000);
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error("Error reading download links:", error);
+    return {};
+  }
+};
+
 const versionNames = async (): Promise<string[]> => {
   try {
     const dataPath = path.join(process.cwd(), "src/data");
@@ -37,4 +55,4 @@ const slowTime = async (time: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, time));
 };
 
-export { versionNames, getVersionData };
+export { versionNames, getVersionData, getDownloadLinks };

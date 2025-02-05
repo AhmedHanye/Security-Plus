@@ -22,10 +22,14 @@ const Content = async ({ version }: { version: string }) => {
           Discover the Powerful Features of Security Plus:
         </h2>
         <Features data={data.features as string[]} color={false} />
-        <h3 className="text-2xl max-lg:text-xl max-md:text-lg font-black">
-          New Features 🎉
-        </h3>
-        <Features data={data.new as string[]} color={true} />
+        {Array.isArray(data.new) && data.new.length > 0 && (
+          <>
+            <h3 className="text-2xl max-lg:text-xl max-md:text-lg font-black">
+              New Features 🎉
+            </h3>
+            <Features data={data.new} color={true} />
+          </>
+        )}
       </div>
     </>
   ) : (
