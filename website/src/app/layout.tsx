@@ -1,5 +1,12 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Security Plus",
+  description:
+    "Security Plus is a browser extension that adds an extra layer of security to your browsing experience. It intercepts page loads and provides detailed security analysis using VirusTotal and WhoIs before allowing access.",
+};
 
 const sourceSansPro = localFont({
   src: [
@@ -22,8 +29,6 @@ const sourceSansPro = localFont({
   variable: "--font-source-sans-pro",
   display: "swap",
 });
-
-// TODO: remove react-scan script
 
 export default function RootLayout({
   children,
@@ -51,7 +56,6 @@ export default function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="Security Plus" />
         <link rel="manifest" href="icons/site.webmanifest" />
-        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
       </head>
       <body className={`${sourceSansPro.variable} antialiased`}>
         {children}

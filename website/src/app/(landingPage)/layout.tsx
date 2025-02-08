@@ -4,9 +4,6 @@ import ReleaseLoading from "@/components/release/releaseLoading";
 import Releases from "@/components/release/releases";
 import { Suspense } from "react";
 
-// TODO Complete the download button
-// TODO: optimize the app
-
 export default async function Layout({
   children,
 }: {

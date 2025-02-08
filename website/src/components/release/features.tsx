@@ -6,13 +6,13 @@ const Features = ({ data, color }: { data: string[]; color: boolean }) => {
       {data.map((item, index) => (
         <div
           key={index}
-          className="font-bold max-md:text-sm flex justify-start gap-x-2 py-1"
+          className="flex justify-start gap-x-2 py-1 font-bold max-md:text-sm"
         >
-          <div className="h-[1.5rem] max-md:h-[1.25rem] center">
+          <div className="center h-[1.5rem] max-md:h-[1.25rem]">
             <div
               className={clsx(
                 "triangle",
-                color ? "bg-blueLight" : "bg-purpleLight"
+                color ? "bg-blueLight" : "bg-purpleLight",
               )}
             ></div>
           </div>

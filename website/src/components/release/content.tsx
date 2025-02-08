@@ -18,13 +18,13 @@ const Content = async ({ version }: { version: string }) => {
         />
       </div>
       <div>
-        <h2 className="text-3xl max-lg:text-2xl max-md:text-xl font-black">
+        <h2 className="text-3xl font-black max-lg:text-2xl max-md:text-xl">
           Discover the Powerful Features of Security Plus:
         </h2>
         <Features data={data.features as string[]} color={false} />
         {Array.isArray(data.new) && data.new.length > 0 && (
           <>
-            <h3 className="text-2xl max-lg:text-xl max-md:text-lg font-black">
+            <h3 className="text-2xl font-black max-lg:text-xl max-md:text-lg">
               New Features 🎉
             </h3>
             <Features data={data.new} color={true} />
@@ -33,7 +33,7 @@ const Content = async ({ version }: { version: string }) => {
       </div>
     </>
   ) : (
-    <div className="h-screen center">
+    <div className="center h-screen">
       <p className="text-2xl font-black">{version} doesn&apos;t exist</p>
     </div>
   );

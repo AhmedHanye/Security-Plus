@@ -42,7 +42,7 @@ const Download = async () => {
         <ScrollArea className="h-[50vh]" scrollHideDelay={0} type="always">
           <Suspense
             fallback={
-              <div className="h-[50vh] center">
+              <div className="center h-[50vh]">
                 <Spinner />
               </div>
             }

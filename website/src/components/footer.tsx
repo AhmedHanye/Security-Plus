@@ -2,28 +2,31 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="py-4 px-custom bg-[#6D248D] flex items-center justify-between snap-start">
-      <p className="text-white font-semibold max-md:text-sm">
+    <footer className="px-custom flex snap-start items-center justify-between bg-[#6D248D] py-4">
+      <p className="font-semibold text-white max-md:text-sm">
         © 2025 Security Plus. All rights reserved.
       </p>
-      <div className="flex center gap-5 max-md:gap-2">
+      <div className="center flex gap-5 max-md:gap-2">
         <a href="https://github.com/AhmedHanye" target="_blank">
-          <Image
-            src={"/images/github.svg"}
-            width={30.77}
-            height={30}
-            className="max-md:w-auto max-md:h-6"
-            alt="github"
-          />
+          <div className="relative size-8 max-md:size-6">
+            <Image
+              src={"/images/github.svg"}
+              fill
+              className="object-cover"
+              alt="linkedin"
+            />
+          </div>
         </a>
+
         <a href="https://www.linkedin.com/in/ahmed-hanye" target="_blank">
-          <Image
-            src={"/images/linkedin.svg"}
-            width={30}
-            height={30}
-            className="max-md:size-6"
-            alt="twitter"
-          />
+          <div className="relative size-8 max-md:size-6">
+            <Image
+              src={"/images/linkedin.svg"}
+              fill
+              className="object-cover"
+              alt="linkedin"
+            />
+          </div>
         </a>
       </div>
     </footer>

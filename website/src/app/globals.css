@@ -148,12 +148,12 @@ html body[data-scroll-locked] {
   }
   .triangle:before,
   .triangle:after {
-    @apply content-[''] absolute bg-inherit;
+    @apply absolute bg-inherit content-[''];
   }
   .triangle,
   .triangle:before,
   .triangle:after {
-    @apply size-[0.35rem] max-md:size-[0.25rem] rounded-tr-[30%];
+    @apply size-[0.35rem] rounded-tr-[30%] max-md:size-[0.25rem];
   }
 
   .triangle {

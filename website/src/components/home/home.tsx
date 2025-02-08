@@ -5,7 +5,7 @@ import React from "react";
 
 const Home = () => {
   return (
-    <section className="flex h-screen flex-col bg-[url('/images/background.svg')] bg-cover bg-center bg-no-repeat py-custom px-custom snap-start">
+    <section className="py-custom px-custom flex h-screen snap-start flex-col bg-[url('/images/background.svg')] bg-cover bg-center bg-no-repeat">
       <div className="flex items-center gap-x-3 max-md:gap-x-2" id="logo">
         <Image
           src="/images/logo.webp"
