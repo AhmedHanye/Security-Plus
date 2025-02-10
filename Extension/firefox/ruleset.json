@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "operation": "remove",
+          "header": "Content-Security-Policy"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "https://www.virustotal.com/*",
+      "resourceTypes": ["sub_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "operation": "remove",
+          "header": "Content-Security-Policy"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "https://who.is/whois/*",
+      "resourceTypes": ["sub_frame"]
+    }
+  }
+]

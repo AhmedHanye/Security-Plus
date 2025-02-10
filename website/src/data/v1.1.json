@@ -1,0 +1,19 @@
+{
+  "video": "https://www.youtube.com/embed/yLDUEVjeJaQ?si=vg7_7bI4YQpP73RB",
+  "features": [
+    "Real-time request blocking for unknown websites",
+    "Granular control over domain and page access",
+    "Built-in database for tracking blocked/allowed pages",
+    "User-friendly interface for quick security actions",
+    "One-click access to security controls",
+    "Customizable security settings"
+  ],
+  "new": [
+    "Optimized and lightweight core for better performance",
+    "Direct integration of security tools via iframes",
+    "Keyboard shortcuts for quick security actions",
+    "Enhanced interface customization options",
+    "Improved database visualization and management",
+    "Advanced theme settings and dark mode support"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Security Plus",
+  "version": "1.1",
+  "description": "This extension will help you to secure your browser.",
+  "permissions": ["declarativeNetRequest", "webNavigation", "storage"],
+  "background": {
+    "scripts": ["./background.js"]
+  },
+  "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*", "index.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {},
+  "icons": {
+    "16": "e-icons/icon16.png",
+    "32": "e-icons/icon32.png",
+    "48": "e-icons/icon48.png",
+    "128": "e-icons/icon128.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset1",
+        "enabled": true,
+        "path": "ruleset.json"
+      }
+    ]
+  }
+}

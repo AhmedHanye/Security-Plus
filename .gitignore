@@ -1,0 +1,44 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Extension directories and files
+Extension/chromium/**
+Extension/firefox/**
+
+!Extension/chromium/manifest.json
+!Extension/chromium/ruleset.json
+!Extension/firefox/manifest.json
+!Extension/firefox/ruleset.json
+!Extension/chromium/e-icons
+!Extension/firefox/e-icons
+!Extension/chromium/e-icons/**
+!Extension/firefox/e-icons/**
+
+
+# Playwright
+playwright-report/
+test-results/
+

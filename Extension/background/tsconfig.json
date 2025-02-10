@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./scripts",
+    "target": "ES6",
+    "module": "NodeNext",
+    "strict": true,
+    "moduleResolution": "nodenext"
+  }
+}

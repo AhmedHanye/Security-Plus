@@ -1,0 +1,12 @@
+{
+  "video": "https://www.youtube.com/embed/yOT_HBNjKUQ?si=IlTd88NtgelkN9Ld",
+  "features": [
+    "Real-time request blocking for unknown websites",
+    "Granular control over domain and page access",
+    "Built-in database for tracking blocked/allowed pages",
+    "VirusTotal API integration for URL and file scanning",
+    "User-friendly interface for quick security actions",
+    "One-click access to security controls",
+    "Customizable security settings"
+  ]
+}

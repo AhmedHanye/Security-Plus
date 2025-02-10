@@ -1,0 +1,19 @@
+{
+  "v1.1": {
+    "Security-Plus_v1.1_chromium.7z": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_chromium.7z",
+    "Security-Plus_v1.1_chromium.tar": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_chromium.tar",
+    "Security-Plus_v1.1_chromium.zip": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_chromium.zip",
+    "Security-Plus_v1.1_firefox.7z": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_firefox.7z",
+    "Security-Plus_v1.1_firefox.tar": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_firefox.tar",
+    "Security-Plus_v1.1_firefox.zip": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.1/Security-Plus_v1.1_firefox.zip",
+    "Source code (zip)": "https://github.com/AhmedHanye/Security-Plus/archive/refs/tags/v1.1.zip",
+    "Source code (tar.gz)": "https://github.com/AhmedHanye/Security-Plus/archive/refs/tags/v1.1.tar.gz"
+  },
+  "v1.0": {
+    "Security-Plus_v1.0_chromium.7z": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.0/Security-Plus_v1.0_chromium.7z",
+    "Security-Plus_v1.0_chromium.tar": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.0/Security-Plus_v1.0_chromium.tar",
+    "Security-Plus_v1.0_chromium.zip": "https://github.com/AhmedHanye/Security-Plus/releases/download/v1.0/Security-Plus_v1.0_chromium.zip",
+    "Source code (zip)": "https://github.com/AhmedHanye/Security-Plus/archive/refs/tags/v1.0.zip",
+    "Source code (tar.gz)": "https://github.com/AhmedHanye/Security-Plus/archive/refs/tags/v1.0.tar.gz"
+  }
+}
