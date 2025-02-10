@@ -56,6 +56,20 @@ export default function RootLayout({
         />
         <meta name="apple-mobile-web-app-title" content="Security Plus" />
         <link rel="manifest" href="icons/site.webmanifest" />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="Security Plus" />
+        <meta property="og:site_name" content="Security Plus" />
+        <meta
+          property="og:description"
+          content="Security Plus is a browser extension that adds an extra layer of security to your browsing experience."
+        />
+        <meta
+          property="og:image"
+          content="https://securityplus.com/icons/apple-touch-icon.png"
+        />
+        <meta property="og:url" content="https://securityplus.com" />
+        <meta property="og:type" content="website" />
       </head>
       <body className={`${sourceSansPro.variable} antialiased`}>
         {children}
