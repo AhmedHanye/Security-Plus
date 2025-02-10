@@ -1,4 +1,3 @@
-"use server";
 import { getDownloadLinks } from "@/lib/data";
 
 const DownloadData = async () => {
