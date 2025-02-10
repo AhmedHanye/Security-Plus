@@ -5,3 +5,7 @@ type DownloadLinks = {
     [key: string]: string;
   };
 };
+
+interface PageProps {
+  searchParams: Promise<{ version?: string }>;
+}
