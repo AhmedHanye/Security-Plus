@@ -12,10 +12,10 @@ export default async function Page({
   const version = (await Promise.resolve(searchParams))?.version?.toLowerCase();
 
   return (
-    <Suspense key={version} fallback={<ContentSkeleton />}>
-      <div className="flex flex-col gap-10 px-5 md:px-8 lg:px-12 xl:px-16">
+    <div className="flex flex-col gap-10 px-5 md:px-8 lg:px-12 xl:px-16">
+      <Suspense key={version} fallback={<ContentSkeleton />}>
         <Content version={version as string} />
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 }
