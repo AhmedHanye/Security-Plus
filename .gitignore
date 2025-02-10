@@ -38,5 +38,7 @@ Extension/firefox/**
 !Extension/firefox/e-icons/**
 
 
-
+# Playwright
+playwright-report/
+test-results/
 
