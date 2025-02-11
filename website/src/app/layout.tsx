@@ -66,9 +66,12 @@ export default function RootLayout({
         />
         <meta
           property="og:image"
-          content="https://securityplus.com/icons/apple-touch-icon.png"
+          content="https://security-plus-extension.vercel.app/icons/apple-touch-icon.png"
         />
-        <meta property="og:url" content="https://securityplus.com" />
+        <meta
+          property="og:url"
+          content="https://security-plus-extension.vercel.app"
+        />
         <meta property="og:type" content="website" />
       </head>
       <body className={`${sourceSansPro.variable} antialiased`}>
