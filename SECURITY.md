@@ -1,12 +1,4 @@
 # Security Policy
-
-## Supported Versions
-The following versions of the Security Plus Extension are currently supported with security updates:
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.0.0   | :white_check_mark: |
-
 ## Reporting a Vulnerability
 
 If you discover a security vulnerability in the Security Plus Extension, we appreciate your help in disclosing it to us in a responsible manner. Please follow these steps:
